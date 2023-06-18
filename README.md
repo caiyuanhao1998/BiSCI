@@ -1,2 +1,2 @@
 # BiSCI
-## BNN for SCI
+## Binarzied Neural Networks for SCI
