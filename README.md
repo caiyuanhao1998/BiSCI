@@ -13,7 +13,7 @@
 
 ### News
 
-- **2023.09.21 :** Our paper has been accepted by NeurIPS 2023. Code and models will be released at this repo and [MST](https://github.com/caiyuanhao1998/MST). :rocket:
+- **2023.09.21 :** Our paper has been accepted by NeurIPS 2023. Code and models are coming soon. :rocket:
 
 
 ### Results
