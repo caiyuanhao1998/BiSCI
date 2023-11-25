@@ -9,7 +9,7 @@ from architecture import *
 
 
 parser = argparse.ArgumentParser(description="PyTorch HSIFUSION")
-parser.add_argument('--data_path', default='../../datasets/TSA_real_data/', type=str,help='path of data')
+parser.add_argument('--data_path', default='../../datasets/TSA_real_data/Measurements/', type=str,help='path of data')
 parser.add_argument('--mask_path', default='../../datasets/TSA_real_data/mask.mat', type=str,help='path of mask')
 parser.add_argument("--size", default=660, type=int, help='the size of trainset image')
 parser.add_argument("--trainset_num", default=2000, type=int, help='total number of trainset')
@@ -18,7 +18,7 @@ parser.add_argument("--seed", default=1, type=int, help='Random_seed')
 parser.add_argument("--batch_size", default=1, type=int, help='batch_size')
 parser.add_argument("--isTrain", default=False, type=bool, help='train or test')
 parser.add_argument("--gpu_id", type=str, default='0')
-parser.add_argument("--pth_dir", type=str, default='model_zoo/bisrnet.pth')
+parser.add_argument("--pretrained_model_path", type=str, default='model_zoo/bisrnet.pth')
 parser.add_argument("--save_dir", type=str, default='./results')
 parser.add_argument("--method", type=str, default='bisrnet')
 opt = parser.parse_args()
@@ -42,7 +42,7 @@ def prepare_data(path, file_num):
 
 HR_HSI = prepare_data(opt.data_path, 5)
 
-model = torch.load(opt.pth_dir).cuda()
+model = model_generator(opt.method, opt.pretrained_model_path).cuda()
 model = model.eval()
 psnr_total = 0
 k = 0

@@ -1,8 +1,12 @@
 import torch
 from .BiSRNet import BiSRNet
+from .BBCU import BBCU
 from .BiConnect import BiConnect
-from .BNN import BNN
+from .BirealNet import BirealNet
+from .BTM import BTM
 from .ReActNet import ReActNet
+from .IRNet import IRNet
+from .BNN import BNN
 
 
 def model_generator(method, pretrained_model_path=None):
@@ -14,6 +18,14 @@ def model_generator(method, pretrained_model_path=None):
         model = BNN(in_channels=28, out_channels=28, n_feat=28, stage=1, num_blocks=[1,1,1]).cuda()
     elif method == 'reactnet':
         model = ReActNet(in_channels=28, out_channels=28, n_feat=28, stage=1, num_blocks=[1,1,1]).cuda()
+    elif method == 'bbcu':
+        model = BBCU(in_channels=28, out_channels=28, n_feat=28, stage=1, num_blocks=[1,1,1]).cuda()
+    elif method == 'bireal':
+        model = BirealNet(in_channels=28, out_channels=28, n_feat=28, stage=1, num_blocks=[1,1,1]).cuda()
+    elif method == 'btm':
+        model = BTM(in_channels=28, out_channels=28, n_feat=28, stage=1, num_blocks=[1,1,1]).cuda()
+    elif method == 'irnet':
+        model = IRNet(in_channels=28, out_channels=28, n_feat=28, stage=1, num_blocks=[1,1,1]).cuda()
     else:
         print(f'Method {method} is not defined !!!!')
     if pretrained_model_path is not None:
