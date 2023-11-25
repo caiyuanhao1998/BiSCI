@@ -5,7 +5,10 @@
 
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2305.10299)
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/structure-aware-sparse-view-x-ray-3d/novel-view-synthesis-on-x3d)](https://paperswithcode.com/sota/novel-view-synthesis-on-x3d?p=structure-aware-sparse-view-x-ray-3d)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/degradation-aware-unfolding-half-shuffle/spectral-reconstruction-on-kaist)](https://paperswithcode.com/sota/spectral-reconstruction-on-kaist?p=degradation-aware-unfolding-half-shuffle)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/degradation-aware-unfolding-half-shuffle/spectral-reconstruction-on-real-hsi)](https://paperswithcode.com/sota/spectral-reconstruction-on-real-hsi?p=degradation-aware-unfolding-half-shuffle)
+
 
 <h2> A Toolbox for Binarized Spectral Compressive Imaging Reconstruction </h2> 
 
