@@ -175,7 +175,7 @@ python train.py --outf ./exp/bbcu/ --method bbcu
 # BTM
 python train.py --outf ./exp/btm/ --method btm
 
-# Our BiSRNet
+# BiSRNet
 python train.py --outf ./exp/bisrnet/ --method bisrnet
 
 ```
@@ -214,7 +214,7 @@ python test.py --outf ./exp/bbcu/ --method bbcu --pretrained_model_path ./model_
 # BTM
 python test.py --outf ./exp/btm/ --method btm --pretrained_model_path ./model_zoo/btm.pth
 
-# Our BiSRNet
+# BiSRNet
 python test.py --outf ./exp/bisrnet/ --method bisrnet --pretrained_model_path ./model_zoo/bisrnet.pth
 
 ```
@@ -282,7 +282,7 @@ python train.py --outf ./exp/bbcu/ --method bbcu
 # BTM
 python train.py --outf ./exp/btm/ --method btm
 
-# Our BiSRNet
+# BiSRNet
 python train.py --outf ./exp/bisrnet/ --method bisrnet
 
 ```
@@ -321,7 +321,7 @@ python test.py --method bbcu --pretrained_model_path ./model_zoo/bbcu.pth
 # BTM
 python test.py --method btm --pretrained_model_path ./model_zoo/btm.pth
 
-# Our BiSRNet
+# BiSRNet
 python test.py --method bisrnet --pretrained_model_path ./model_zoo/bisrnet.pth
 
 ```
