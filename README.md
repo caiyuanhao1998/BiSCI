@@ -1,7 +1,7 @@
 &nbsp;
 
 <div align="center">
-<p align="center"> <img src="fig/logo.png" width="100px"> </p>
+<p align="center"> <img src="fig/logo.png" width="150px"> </p>
 
 [![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2305.10299)
 
@@ -18,17 +18,15 @@
 
 ### News
 
+- **2023.10.24 :** Code, pre-trained models, and results are released. Feel free to check and use them. ⭐
 - **2023.09.22 :** Our paper has been accepted by NeurIPS 2023. Code and models will be released. :rocket:
 
 
 ### Results
 
-- This repo is a baseline and toolbox containing eight BNN-based methods for spectral compressive imaging
+- This repo is a toolbox containing eight BNN-based methods for spectral compressive imaging
 
-- We provide download links for all supported algorithms
-
-
-![bnn_compare](/fig/bnn_compare.png)
+- We provide download links of pre-trained models and results as follows
 
 
 |     Simulation results     |    Simulation models    |    Real results    |    Real models    |
@@ -36,24 +34,10 @@
 | &ensp;&ensp; Google or Baidu &ensp;&ensp; | &ensp;&ensp; Google or Baidu &ensp;&ensp; | &ensp;&ensp;&ensp; Google or Baidu &ensp;&ensp;&ensp; | &ensp;&ensp;&ensp; Google or Baidu &ensp;&ensp;&ensp; |
 
 
-
-<details close>
-<summary><b>Supported Algorithms:</b></summary>
-
-* [x] [BiConnect](https://proceedings.neurips.cc/paper_files/paper/2015/hash/3e15cc11f979ed25912dff5b0669f2cd-Abstract.html) (NeuIPS 2015)
-* [x] [BNN](https://proceedings.neurips.cc/paper_files/paper/2016/hash/d8330f857a17c53d217014ee776bfd50-Abstract.html) (NeuIPS 2016)
-* [x] [Bi-Real](https://openaccess.thecvf.com/content_ECCV_2018/html/zechun_liu_Bi-Real_Net_Enhancing_ECCV_2018_paper.html) (ECCV 2018)
-* [x] [IRNet](https://openaccess.thecvf.com/content_CVPR_2020/html/Qin_Forward_and_Backward_Information_Retention_for_Accurate_Binary_Neural_Networks_CVPR_2020_paper.html) (CVPR 2020)
-* [x] [ReActNet](https://link.springer.com/chapter/10.1007/978-3-030-58568-6_9) (ECCV 2020)
-* [x] [BBCU](https://arxiv.org/abs/2210.00405) (ICLR 2023)
-* [x] [BTM](https://ojs.aaai.org/index.php/AAAI/article/view/16263) (AAAI 2021)
-* [x] [BiSRNet](https://arxiv.org/abs/2305.10299) (NeurIPS 2023)
-
-
-</details>
-
 <details close>
 <summary><b>Quantitative comparisons on the simulation dataset</b></summary>
+
+![bnn_compare](/fig/bnn_compare.png)
 
 ![quantitative_compare](/fig/simu_quantitative_compare.png)
 
@@ -70,6 +54,21 @@
 <summary><b>Qualitative comparisons on the real dataset</b></summary>
 
 ![real_compare](/fig/real_compare.png)
+
+</details>
+
+<details close>
+<summary><b>Supported Algorithms:</b></summary>
+
+* [x] [BiConnect](https://proceedings.neurips.cc/paper_files/paper/2015/hash/3e15cc11f979ed25912dff5b0669f2cd-Abstract.html) (NeuIPS 2015)
+* [x] [BNN](https://proceedings.neurips.cc/paper_files/paper/2016/hash/d8330f857a17c53d217014ee776bfd50-Abstract.html) (NeuIPS 2016)
+* [x] [Bi-Real](https://openaccess.thecvf.com/content_ECCV_2018/html/zechun_liu_Bi-Real_Net_Enhancing_ECCV_2018_paper.html) (ECCV 2018)
+* [x] [IRNet](https://openaccess.thecvf.com/content_CVPR_2020/html/Qin_Forward_and_Backward_Information_Retention_for_Accurate_Binary_Neural_Networks_CVPR_2020_paper.html) (CVPR 2020)
+* [x] [ReActNet](https://link.springer.com/chapter/10.1007/978-3-030-58568-6_9) (ECCV 2020)
+* [x] [BBCU](https://arxiv.org/abs/2210.00405) (ICLR 2023)
+* [x] [BTM](https://ojs.aaai.org/index.php/AAAI/article/view/16263) (AAAI 2021)
+* [x] [BiSRNet](https://arxiv.org/abs/2305.10299) (NeurIPS 2023)
+
 
 </details>
 
