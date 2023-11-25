@@ -149,7 +149,42 @@ Following [MST series work](https://github.com/caiyuanhao1998/MST), we use the C
 
 ## 3. Simulation Experiments
 
-### 3.1&ensp;Testing
+### 3.1&ensp;Training
+
+```shell
+
+cd simulation/train_code/
+
+# Binnary Connect
+python train.py --outf ./exp/biconnect/ --method biconnect
+
+# BNN
+python train.py --outf ./exp/bnn/ --method bnn
+
+# Bi-Real Net
+python train.py --outf ./exp/bireal/ --method bireal
+
+# IR-Net
+python train.py --outf ./exp/irnet/ --method irnet
+
+# ReActNet
+python train.py --outf ./exp/reactnet/ --method reactnet
+
+# BBCU
+python train.py --outf ./exp/bbcu/ --method bbcu
+
+# BTM
+python train.py --outf ./exp/btm/ --method btm
+
+# Our BiSRNet
+python train.py --outf ./exp/bisrnet/ --method bisrnet
+
+```
+
+The training logs, trained models, and reconstructed HSIs will be available in `simulation/train_code/exp/`
+
+
+### 3.2&ensp;Testing
 
 Download the pre-trained weights from ([Google Drive](https://drive.google.com/drive/folders/11xMKGyQhUW8bvAxtwUCElUgA4kQFGV8g?usp=drive_link) / [Baidu Disk](https://pan.baidu.com/s/1kc1uv9xbw757Njymspv8Wg?pwd=cyh2), code: `cyh2`) and place them to `simulation/test_code/model_zoo/`
 
@@ -196,11 +231,36 @@ Run cal_quality_assessment.m
 to calculate the PSNR and SSIM of the reconstructed HSIs.
 
 
-### 3.2&ensp;Training
+
+### 3.3&ensp;Visualization
+
+- Put the reconstructed HSIs in `visualization/simulation_results/results/` and rename it as `method.mat`, e.g., `bisrnet.mat`
+
+- Generate the RGB images of the reconstructed HSIs:
+
+```shell
+ cd visualization/
+ run show_simulation.m 
+```
+
+- Draw the spectral density lines
+
+```shell
+cd visualization/
+Run show_line.m
+```
+
+
+&nbsp;
+
+
+## 4. Real Experiments
+
+### 4.1&ensp;Training
 
 ```shell
 
-cd simulation/train_code/
+cd real/train_code/
 
 # Binnary Connect
 python train.py --outf ./exp/biconnect/ --method biconnect
@@ -228,34 +288,10 @@ python train.py --outf ./exp/bisrnet/ --method bisrnet
 
 ```
 
-The training logs, trained models, and reconstructed HSIs will be available in `simulation/train_code/exp/`
+The training logs, trained models, and reconstructed HSIs will be available in `real/train_code/exp/`
 
 
-### 3.3&ensp;Visualization
-
-- Put the reconstructed HSIs in `visualization/simulation_results/results/` and rename it as `method.mat`, e.g., `bisrnet.mat`
-
-- Generate the RGB images of the reconstructed HSIs:
-
-```shell
- cd visualization/
- run show_simulation.m 
-```
-
-- Draw the spectral density lines
-
-```shell
-cd visualization/
-Run show_line.m
-```
-
-
-&nbsp;
-
-
-## 4. Real Experiments
-
-### 4.1&ensp;Testing
+### 4.2&ensp;Testing
 
 Download the pre-trained weights from ([Google Drive](https://drive.google.com/drive/folders/1v0py8MjMQju5MWTZMkdmPq_elzUco8uh?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1ZaffyEDZ0FcdMdhUj7I5Tw?pwd=cyh2), code: `cyh2`) and place them to `simulation/test_code/model_zoo/`
 
@@ -293,41 +329,6 @@ python test.py --method bisrnet --pth_dir ./model_zoo/bisrnet.pth
 
 The reconstructed HSIs will be output into `real/test_code/results/`  
 
-
-
-### 4.2&ensp;Training
-
-```shell
-
-cd real/train_code/
-
-# Binnary Connect
-python train.py --outf ./exp/biconnect/ --method biconnect
-
-# BNN
-python train.py --outf ./exp/bnn/ --method bnn
-
-# Bi-Real Net
-python train.py --outf ./exp/bireal/ --method bireal
-
-# IR-Net
-python train.py --outf ./exp/irnet/ --method irnet
-
-# ReActNet
-python train.py --outf ./exp/reactnet/ --method reactnet
-
-# BBCU
-python train.py --outf ./exp/bbcu/ --method bbcu
-
-# BTM
-python train.py --outf ./exp/btm/ --method btm
-
-# Our BiSRNet
-python train.py --outf ./exp/bisrnet/ --method bisrnet
-
-```
-
-The training logs, trained models, and reconstructed HSIs will be available in `real/train_code/exp/`
 
 
 ### 4.3&ensp;Visualization
