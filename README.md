@@ -301,28 +301,28 @@ Run the following command to test the model on the simulation dataset.
 cd real/test_code/
 
 # Binnary Connect
-python test.py --method biconnect --pth_dir ./model_zoo/biconnect.pth
+python test.py --method biconnect --pretrained_model_path ./model_zoo/biconnect.pth
 
 # BNN
-python test.py --method bnn --pth_dir ./model_zoo/bnn.pth
+python test.py --method bnn --pretrained_model_path ./model_zoo/bnn.pth
 
 # Bi-Real Net
-python test.py --method bireal --pth_dir ./model_zoo/bireal.pth
+python test.py --method bireal --pretrained_model_path ./model_zoo/bireal.pth
 
 # IR-Net
-python test.py --method irnet --pth_dir ./model_zoo/irnet.pth
+python test.py --method irnet --pretrained_model_path ./model_zoo/irnet.pth
 
 # ReActNet
-python test.py --method reactnet --pth_dir ./model_zoo/reactnet.pth
+python test.py --method reactnet --pretrained_model_path ./model_zoo/reactnet.pth
 
 # BBCU
-python test.py --method bbcu --pth_dir ./model_zoo/bbcu.pth
+python test.py --method bbcu --pretrained_model_path ./model_zoo/bbcu.pth
 
 # BTM
-python test.py --method btm --pth_dir ./model_zoo/btm.pth
+python test.py --method btm --pretrained_model_path ./model_zoo/btm.pth
 
 # Our BiSRNet
-python test.py --method bisrnet --pth_dir ./model_zoo/bisrnet.pth
+python test.py --method bisrnet --pretrained_model_path ./model_zoo/bisrnet.pth
 
 ```
 
