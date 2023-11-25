@@ -409,14 +409,14 @@ class BirealNet(nn.Module):
         return h[:, :, :h_inp, :w_inp]
 
 
-if __name__ == "__main__":
-    # device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
-    from fvcore.nn import FlopCountAnalysis
-    inputs = torch.rand(1, 28, 256, 256).cuda()
-    model = BiUNet_BirealNet_3L_v3(stage=1,num_blocks=[1,1,1]).cuda()
-    # inputs = torch.rand(1, 28, 256, 256).to(device)
-    # model = BiUNet(stage=1,num_blocks=[1,1,1]).to(device)
-    flops = FlopCountAnalysis(model, inputs)
-    n_param = sum([p.nelement() for p in model.parameters()])
-    print(f'GMac:{flops.total()}')
-    print(f'Params:{n_param}')
+# if __name__ == "__main__":
+#     # device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+#     from fvcore.nn import FlopCountAnalysis
+#     inputs = torch.rand(1, 28, 256, 256).cuda()
+#     model = BiUNet_BirealNet_3L_v3(stage=1,num_blocks=[1,1,1]).cuda()
+#     # inputs = torch.rand(1, 28, 256, 256).to(device)
+#     # model = BiUNet(stage=1,num_blocks=[1,1,1]).to(device)
+#     flops = FlopCountAnalysis(model, inputs)
+#     n_param = sum([p.nelement() for p in model.parameters()])
+#     print(f'GMac:{flops.total()}')
+#     print(f'Params:{n_param}')
