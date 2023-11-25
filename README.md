@@ -1,14 +1,19 @@
-# Binarized Spectral Compressive Imaging (NeurIPS 23)
+&nbsp;
+
+<div align="center">
+<p align="center"> <img src="fig/logo.png" width="100px"> </p>
+
+[![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2305.10299)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/structure-aware-sparse-view-x-ray-3d/novel-view-synthesis-on-x3d)](https://paperswithcode.com/sota/novel-view-synthesis-on-x3d?p=structure-aware-sparse-view-x-ray-3d)
+
+<h2> A Toolbox for Binarized Spectral Compressive Imaging Reconstruction </h2> 
 
 
-### Pipeline of our BiSRNet
-
-![pipeline](/fig/pipeline.png)
+</div>
 
 
-### Comparison with previous Sign approximation functions
-
-![compare](/fig/approximation_compare.png)
+&nbsp;
 
 
 ### News
