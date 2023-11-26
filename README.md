@@ -217,9 +217,7 @@ python test.py --outf ./exp/bisrnet/ --method bisrnet --pretrained_model_path ./
 
 ```
 
-- The reconstructed HSIs will be output into `simulation/test_code/exp/`  
-
-- Then place the reconstructed results into `simulation/test_code/Quality_Metrics/results` and  run the following commend to calculate the PSNR and SSIM of the reconstructed HSIs.
+- The reconstructed HSIs will be output into `simulation/test_code/exp/`. Then place the reconstructed results into `simulation/test_code/Quality_Metrics/results` and  run the following commend to calculate the PSNR and SSIM of the reconstructed HSIs.
 
 ```shell
 Run cal_quality_assessment.m
