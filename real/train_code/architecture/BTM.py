@@ -628,13 +628,28 @@ class BTM(nn.Module):
         self.body = nn.Sequential(*modules_body)
         self.conv_out = nn.Conv2d(n_feat, out_channels, kernel_size=3, padding=(3 - 1) // 2,bias=False)     # 1-bit -> 32-bit
 
-    def initial_x(self, y, Phi):
-        """
-        :param y: [b,256,310]
-        :param Phi: [b,28,256,256]
-        :return: z: [b,28,256,256]
-        """
-        x = self.fution(torch.cat([y, Phi], dim=1))
+    # def initial_x(self, y, Phi):
+    #     """
+    #     :param y: [b,256,310]
+    #     :param Phi: [b,28,256,256]
+    #     :return: z: [b,28,256,256]
+    #     """
+    #     x = self.fution(torch.cat([y, Phi], dim=1))
+    #     return x
+
+    def y2x(self, y):
+        ##  Spilt operator
+        sz = y.size()
+        if len(sz) == 3:
+            y = y.unsqueeze(0)
+            bs = 1
+        else:
+            bs = sz[0]
+        sz = y.size()
+        x = torch.zeros([bs, 28, sz[2], sz[2]]).cuda()
+        for t in range(28):
+            temp = y[:, :, :, 0 + 2 * t : sz[2] + 2 * t]
+            x[:, t, :, :] = temp.squeeze(1)
         return x
 
     def forward(self, y, Phi=None):
@@ -645,7 +660,8 @@ class BTM(nn.Module):
         if Phi==None:
             Phi = torch.rand((1,28,256,256)).cuda()
             # Phi = torch.rand((1,28,256,256)).to(device)
-        x = self.initial_x(y, Phi)
+        # x = self.initial_x(y, Phi)
+        x = self.y2x(y)
         b, c, h_inp, w_inp = x.shape
         hb, wb = 8, 8
         pad_h = (hb - h_inp % hb) % hb
