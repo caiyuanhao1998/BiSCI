@@ -180,14 +180,12 @@ python train.py --outf ./exp/bisrnet/ --method bisrnet
 
 ```
 
-The training logs, trained models, and reconstructed HSIs will be available in `simulation/train_code/exp/`
+- The training logs, trained models, and reconstructed HSIs will be available in `simulation/train_code/exp/`
 
 
 ### 3.2&ensp;Testing
 
 Download the pre-trained weights from ([Google Drive](https://drive.google.com/drive/folders/11xMKGyQhUW8bvAxtwUCElUgA4kQFGV8g?usp=drive_link) / [Baidu Disk](https://pan.baidu.com/s/1kc1uv9xbw757Njymspv8Wg?pwd=cyh2), code: `cyh2`) and place them to `simulation/test_code/model_zoo/`
-
-Run the following command to test the model on the simulation dataset.
 
 ```shell
 
@@ -219,17 +217,22 @@ python test.py --outf ./exp/bisrnet/ --method bisrnet --pretrained_model_path ./
 
 ```
 
-The reconstructed HSIs will be output into `simulation/test_code/exp/`  
+- The reconstructed HSIs will be output into `simulation/test_code/exp/`  
 
-Then place the reconstructed results into `simulation/test_code/Quality_Metrics/results` and  
+- Then place the reconstructed results into `simulation/test_code/Quality_Metrics/results` and  run the following commend to calculate the PSNR and SSIM of the reconstructed HSIs.
 
 ```shell
 Run cal_quality_assessment.m
 ```
 
-to calculate the PSNR and SSIM of the reconstructed HSIs.
+- #### Evaluating the Params and FLOPS of models
 
+  We have provided a function `my_summary_bnn()` in `simulation/test_code/utils.py`, please use this function to evaluate the parameters and computational complexity of BNNs.
 
+```shell
+from utils import my_summary_bnn
+my_summary_bnn(BiSRNet(), 256, 256, 28, 1)
+```
 
 ### 3.3&ensp;Visualization
 
@@ -287,14 +290,13 @@ python train.py --outf ./exp/bisrnet/ --method bisrnet
 
 ```
 
-The training logs, trained models, and reconstructed HSIs will be available in `real/train_code/exp/`
+- The training logs, trained models, and reconstructed HSIs will be available in `real/train_code/exp/`
 
 
 ### 4.2&ensp;Testing
 
 Download the pre-trained weights from ([Google Drive](https://drive.google.com/drive/folders/1v0py8MjMQju5MWTZMkdmPq_elzUco8uh?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1ZaffyEDZ0FcdMdhUj7I5Tw?pwd=cyh2), code: `cyh2`) and place them to `simulation/test_code/model_zoo/`
 
-Run the following command to test the model on the simulation dataset.
 
 ```shell
 
@@ -326,7 +328,7 @@ python test.py --method bisrnet --pretrained_model_path ./model_zoo/bisrnet.pth
 
 ```
 
-The reconstructed HSIs will be output into `real/test_code/results/`  
+- The reconstructed HSIs will be output into `real/test_code/results/`  
 
 
 

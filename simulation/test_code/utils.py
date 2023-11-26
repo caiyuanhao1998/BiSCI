@@ -136,11 +136,11 @@ def init_meas(gt, mask, input_setting):
         input_meas = gen_meas_torch(gt, mask, Y2H=False, mul_mask=True)
     return input_meas
 
-def my_summary(test_model, H = 256, W = 256, C = 28, N = 1):
+def my_summary_bnn(test_model, H = 256, W = 256, C = 28, N = 1):
     model = test_model.cuda()
     print(model)
     inputs = torch.randn((N, C, H, W)).cuda()
     flops = FlopCountAnalysis(model,inputs)
     n_param = sum([p.nelement() for p in model.parameters()])
-    print(f'GMac:{flops.total()/(1024*1024*1024)}')
-    print(f'Params:{n_param}')
+    print(f'GMac:{flops.total()/(1024*1024*1024*58)}')
+    print(f'Params:{n_param / 32}')
