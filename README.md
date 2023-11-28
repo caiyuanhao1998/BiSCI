@@ -21,6 +21,7 @@
 
 ### News
 
+- **2023.11.27 :** Our BiSCI has been added to the [Awesome-Model-Quantization](https://github.com/htqin/awesome-model-quantization) collection. :tada:
 - **2023.10.24 :** Code, pre-trained models, and results are released. Feel free to check and use them. ⭐
 - **2023.09.22 :** Our paper has been accepted by NeurIPS 2023. Code and models will be released. :rocket:
 
