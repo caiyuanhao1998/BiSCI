@@ -27,6 +27,10 @@ print(opt)
 os.environ["CUDA_DEVICE_ORDER"] = 'PCI_BUS_ID'
 os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpu_id
 
+# Binary activations are sensitive to reduced-precision convolutions.
+torch.backends.cudnn.allow_tf32 = False
+torch.backends.cuda.matmul.allow_tf32 = False
+
 def prepare_data(path, file_num):
     HR_HSI = np.zeros((((660,714,file_num))))
     for idx in range(file_num):

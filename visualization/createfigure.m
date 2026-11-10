@@ -17,11 +17,11 @@ hold(axes1,'on');
 plot1 = plot(X1,YMatrix1,'MarkerSize',16,'Marker','.','LineWidth',2.5,...
     'Parent',axes1);
 set(plot1(1),'DisplayName',' Ground Truth','Color',[1 0 0]);
-set(plot1(2),'DisplayName',' HDNet, corr: '+string(roundn(Corr(1),-4)),'Color',[0.01 0.66 0.62]);
-set(plot1(3),'DisplayName',' MST-S, corr: '+string(roundn(Corr(2),-4)),'Color',[0.66 0.01 0.62]);
-set(plot1(4),'DisplayName',' MST-M, corr: '+string(roundn(Corr(3),-4)),'Color',[1 1 0]);
-set(plot1(5),'DisplayName',' MST-L, corr: '+string(roundn(Corr(4),-4)),'Color',[0 0.5 0.5]);
-set(plot1(6),'DisplayName',' MST++, corr: '+string(roundn(Corr(5),-4)),'Color',[0 1 0]);
+set(plot1(2),'DisplayName',sprintf(' HDNet, corr: %.4f', Corr(1)),'Color',[0.01 0.66 0.62]);
+set(plot1(3),'DisplayName',sprintf(' MST-S, corr: %.4f', Corr(2)),'Color',[0.66 0.01 0.62]);
+set(plot1(4),'DisplayName',sprintf(' MST-M, corr: %.4f', Corr(3)),'Color',[1 1 0]);
+set(plot1(5),'DisplayName',sprintf(' MST-L, corr: %.4f', Corr(4)),'Color',[0 0.5 0.5]);
+set(plot1(6),'DisplayName',sprintf(' MST++, corr: %.4f', Corr(5)),'Color',[0 1 0]);
 
 
 

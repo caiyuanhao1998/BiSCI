@@ -8,6 +8,10 @@ from option import opt
 
 os.environ["CUDA_DEVICE_ORDER"] = 'PCI_BUS_ID'
 os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpu_id
+
+# Binary activations are sensitive to reduced-precision convolutions.
+torch.backends.cudnn.allow_tf32 = False
+torch.backends.cuda.matmul.allow_tf32 = False
 torch.backends.cudnn.enabled = True
 torch.backends.cudnn.benchmark = True
 if not torch.cuda.is_available():
