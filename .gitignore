@@ -8,6 +8,3 @@ __pycache__/
 /simulation/test_code/results
 /real/train_code/exp
 /real/test_code/results
-/simulation/test_code/Quality_Metrics/results/*.mat
-/visualization/*_results/results/*
-/visualization/*_results/rgb_results

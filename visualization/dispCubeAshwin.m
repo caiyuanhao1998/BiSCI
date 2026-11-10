@@ -50,7 +50,7 @@ for r = 1:rows
         else
             currentwl = wavelengths(figscount);
 
-            cmM=(gray(256)*kron(ones(3,1),spectrumRGB(wavelengths(figscount))));
+            cmM=(gray*kron(ones(3,1),spectrumRGB(wavelengths(figscount))));
             cmM=cmM/max(max(cmM));
 
             if figscount<=totalfigs
@@ -84,9 +84,6 @@ end
 % h_crop = imcrop(h,rect1);
 % saveas(h_crop, [resultname '.png']); 
 saveas(h, [resultname, '.png']);
-if exist('OCTAVE_VERSION', 'builtin') && strcmp(get(h, 'Visible'), 'off')
-    close(h);
-end
 % print(gcf,'-dpng',resultname);
 
 
@@ -142,18 +139,8 @@ if (numel(lambdaIn) > 1)
 end
 
 % Convert the XYZ values to sRGB.
-if exist('OCTAVE_VERSION', 'builtin')
-    % Match makecform's ICC white point using Bradford adaptation to D65.
-    B = [0.8951 0.2664 -0.1614; -0.7502 1.7135 0.0367; 0.0389 -0.0685 1.0296];
-    source_white = [0.9642; 1.0000; 0.8249];
-    target_white = [0.9504; 1.0000; 1.0888];
-    adaptation = B \ (diag((B * target_white) ./ (B * source_white)) * B);
-    adapted_xyz = reshape(reshape(XYZ, [], 3) * adaptation', size(XYZ));
-    sRGB = min(max(xyz2rgb(adapted_xyz), 0), 1);
-else
-    XYZ2sRGB = makecform('xyz2srgb');
-    sRGB = applycform(XYZ, XYZ2sRGB);
-end
+XYZ2sRGB = makecform('xyz2srgb');
+sRGB = applycform(XYZ, XYZ2sRGB);
 
 
 function hout = subimage2(varargin)
@@ -213,7 +200,7 @@ for k = 1:length(h)
         if (isequal(get(h(k), 'CDataMapping'), 'direct'))
             if (strcmp(get(h(k),'Type'),'image'))
                 set(h(k), 'CData', ...
-                          indexed_rgb(get(h(k),'CData'), cm));
+                          iptgate('ind2rgb8',get(h(k),'CData'), cm));
             else
                 set(h(k), 'CData', ind2rgb(get(h(k),'CData'), cm));
             end
@@ -249,19 +236,6 @@ end
 %--------------------------------------------------------
 % Subfunction PARSE_INPUTS
 %--------------------------------------------------------
-function rgb = indexed_rgb(indices, map)
-if exist('OCTAVE_VERSION', 'builtin')
-    % Octave requires integer, in-range indices for floating-point images.
-    if isfloat(indices)
-        indices = min(max(round(indices), 1), size(map, 1));
-    end
-    % Floating-point truecolor avoids saturation in the gnuplot backend.
-    rgb = ind2rgb(indices, map);
-else
-    rgb = iptgate('ind2rgb8', indices, map);
-end
-
-
 function [x,y,cdata] = parse_inputs(varargin)
 
 x = [];
@@ -319,7 +293,7 @@ case 2
         
     elseif (size(varargin{2},2) == 3)
         % subimage(X,map);
-        cdata = indexed_rgb(varargin{1},varargin{2});
+        cdata = iptgate('ind2rgb8',varargin{1},varargin{2});
         
     else
         msg = 'Invalid input arguments.';
@@ -375,7 +349,7 @@ case 4
         % subimage(x,y,X,map);
         x = varargin{1};
         y = varargin{2};
-        cdata = indexed_rgb(varargin{3},varargin{4});
+        cdata = iptgate('ind2rgb8',varargin{3},varargin{4});
         
     else
         msg = 'Invalid input arguments';                

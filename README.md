@@ -206,8 +206,6 @@ hf download CaiYuanhao/BiSCI --include "Simu_models/*.pth" --local-dir simulatio
 
 Alternatively, download from [Google Drive](https://drive.google.com/drive/folders/11xMKGyQhUW8bvAxtwUCElUgA4kQFGV8g?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1kc1uv9xbw757Njymspv8Wg?pwd=cyh2) (code: `cyh2`) and place the weights in `BiSCI/simulation/test_code/model_zoo/Simu_models/`.
 
-See the [measured metrics](docs/metrics.md), including the current Bi-Real checkpoint quality issue.
-
 Prepare `datasets/TSA_simu_data/mask.mat` and the ten scenes in `datasets/TSA_simu_data/Truth/` as described above, then run:
 
 ```shell
