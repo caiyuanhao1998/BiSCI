@@ -201,7 +201,7 @@ python train.py --outf ./exp/bisrnet/ --method bisrnet
 Download the simulation weights from [Hugging Face](https://huggingface.co/CaiYuanhao/BiSCI). Run from the repository root:
 
 ```bash
-hf download CaiYuanhao/BiSCI --include "Simu_models/*.pth" --local-dir simulation/test_code/model_zoo
+hf download CaiYuanhao/BiSCI --include "config.json" "Simu_models/*.pth" --local-dir simulation/test_code/model_zoo
 ```
 
 Alternatively, download from [Google Drive](https://drive.google.com/drive/folders/11xMKGyQhUW8bvAxtwUCElUgA4kQFGV8g?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1kc1uv9xbw757Njymspv8Wg?pwd=cyh2) (code: `cyh2`) and place the weights in `BiSCI/simulation/test_code/model_zoo/Simu_models/`.
@@ -311,7 +311,7 @@ python train.py --outf ./exp/bisrnet/ --method bisrnet
 Download the real-data weights from [Hugging Face](https://huggingface.co/CaiYuanhao/BiSCI). Run from the repository root:
 
 ```bash
-hf download CaiYuanhao/BiSCI --include "Real_models/*.pth" --local-dir real/test_code/model_zoo
+hf download CaiYuanhao/BiSCI --include "config.json" "Real_models/*.pth" --local-dir real/test_code/model_zoo
 ```
 
 Alternatively, download from [Google Drive](https://drive.google.com/drive/folders/1v0py8MjMQju5MWTZMkdmPq_elzUco8uh?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1ZaffyEDZ0FcdMdhUj7I5Tw?pwd=cyh2) (code: `cyh2`) and place the weights in `BiSCI/real/test_code/model_zoo/Real_models/`.
