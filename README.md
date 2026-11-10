@@ -6,7 +6,7 @@
   <a href="https://arxiv.org/abs/2305.10299"><img src="https://img.shields.io/badge/arXiv-BiSCI-B31B1B" height="20" style="vertical-align:middle;" alt="arXiv paper"></a>
   <a href="https://arxiv.org/abs/2305.10299"><img src="https://img.shields.io/badge/NeurIPS-2023-FF5797" height="20" style="vertical-align:middle;" alt="NeurIPS 2023"></a>
   <a href="https://zhuanlan.zhihu.com/p/668862020"><img src="https://img.shields.io/badge/知乎解读-BiSCI-0084FF" height="20" style="vertical-align:middle;" alt="知乎解读"></a>
-  <a href="https://huggingface.co/CaiYuanhao/BiSCI"><img src="https://img.shields.io/badge/🤗_Hugging_Face-models-FFD21E" height="20" style="vertical-align:middle;" alt="Hugging Face models"></a>
+  <a href="https://huggingface.co/CaiYuanhao/BiSCI"><img src="fig/huggingface_models.svg" height="20" style="vertical-align:middle;" alt="Hugging Face models"></a>
 </p>
 
 <h2 align="center">A Toolbox for Binarized Spectral Compressive Imaging Reconstruction</h2>
