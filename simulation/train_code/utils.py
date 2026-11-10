@@ -31,12 +31,12 @@ def generate_shift_masks(mask_path, batch_size):
 
 def LoadTraining(path):
     imgs = []
-    scene_list = os.listdir(path)  #返回指定路径下的文件和文件夹列表
+    scene_list = [name for name in os.listdir(path) if name.endswith('.mat')]  #返回指定路径下的文件和文件夹列表
     scene_list.sort()
     print('training sences:', len(scene_list))
     for i in range(len(scene_list)):
     # for i in range(5):
-        scene_path = path + scene_list[i]
+        scene_path = os.path.join(path, scene_list[i])
         scene_num = int(scene_list[i].split('.')[0][5:])
         # stx()
         if scene_num<=205:
@@ -53,11 +53,11 @@ def LoadTraining(path):
     return imgs
 
 def LoadTest(path_test):
-    scene_list = os.listdir(path_test)
+    scene_list = [name for name in os.listdir(path_test) if name.endswith('.mat')]
     scene_list.sort()
     test_data = np.zeros((len(scene_list), 256, 256, 28))
     for i in range(len(scene_list)):
-        scene_path = path_test + scene_list[i]
+        scene_path = os.path.join(path_test, scene_list[i])
         img = sio.loadmat(scene_path)['img']
         test_data[i, :, :, :] = img
     test_data = torch.from_numpy(np.transpose(test_data, (0, 3, 1, 2)))
@@ -102,8 +102,8 @@ def shuffle_crop(train_data, batch_size, crop_size=256, argument=True):
         for i in range(batch_size//2):
             img = train_data[index[i]]
             h, w, _ = img.shape
-            x_index = np.random.randint(0, h - crop_size)
-            y_index = np.random.randint(0, w - crop_size)
+            x_index = np.random.randint(0, h - crop_size + 1)
+            y_index = np.random.randint(0, w - crop_size + 1)
             processed_data[i, :, :, :] = img[x_index:x_index + crop_size, y_index:y_index + crop_size, :]
         processed_data = torch.from_numpy(np.transpose(processed_data, (0, 3, 1, 2))).cuda().float()
         for i in range(processed_data.shape[0]):
@@ -114,9 +114,11 @@ def shuffle_crop(train_data, batch_size, crop_size=256, argument=True):
         for i in range(batch_size - batch_size // 2):
             sample_list = np.random.randint(0, len(train_data), 4)
             for j in range(4):
-                x_index = np.random.randint(0, h-crop_size//2)
-                y_index = np.random.randint(0, w-crop_size//2)
-                processed_data[j] = train_data[sample_list[j]][x_index:x_index+crop_size//2,y_index:y_index+crop_size//2,:]
+                img = train_data[sample_list[j]]
+                h, w, _ = img.shape
+                x_index = np.random.randint(0, h-crop_size//2 + 1)
+                y_index = np.random.randint(0, w-crop_size//2 + 1)
+                processed_data[j] = img[x_index:x_index+crop_size//2,y_index:y_index+crop_size//2,:]
             gt_batch_2 = torch.from_numpy(np.transpose(processed_data, (0, 3, 1, 2))).cuda()  # [4,28,128,128]
             gt_batch.append(arguement_2(gt_batch_2))
         gt_batch = torch.stack(gt_batch, dim=0)
@@ -126,8 +128,8 @@ def shuffle_crop(train_data, batch_size, crop_size=256, argument=True):
         processed_data = np.zeros((batch_size, crop_size, crop_size, 28), dtype=np.float32)
         for i in range(batch_size):
             h, w, _ = train_data[index[i]].shape
-            x_index = np.random.randint(0, h - crop_size)
-            y_index = np.random.randint(0, w - crop_size)
+            x_index = np.random.randint(0, h - crop_size + 1)
+            y_index = np.random.randint(0, w - crop_size + 1)
             processed_data[i, :, :, :] = train_data[index[i]][x_index:x_index + crop_size, y_index:y_index + crop_size, :]
         gt_batch = torch.from_numpy(np.transpose(processed_data, (0, 3, 1, 2)))
         return gt_batch

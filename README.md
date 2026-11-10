@@ -1,22 +1,28 @@
-&nbsp;
+<p align="center"><img src="fig/logo.png" width="150" alt="BiSCI logo"></p>
 
-<div align="center">
-<p align="center"> <img src="fig/logo.png" width="150px"> </p>
+# A Toolbox for Binarized Spectral Compressive Imaging Reconstruction
 
-[![arXiv](https://img.shields.io/badge/arxiv-paper-179bd3)](https://arxiv.org/abs/2305.10299)
-[![zhihu](https://img.shields.io/badge/zhihu-知乎-179bd3)](https://zhuanlan.zhihu.com/p/668862020)
+<p>
+  <a href="https://arxiv.org/abs/2305.10299"><img src="https://img.shields.io/badge/arXiv-BiSCI-B31B1B" height="20" style="vertical-align:middle;" alt="arXiv paper"></a>
+  <a href="https://arxiv.org/abs/2305.10299"><img src="https://img.shields.io/badge/NeurIPS-2023-FF5797" height="20" style="vertical-align:middle;" alt="NeurIPS 2023"></a>
+  <a href="https://zhuanlan.zhihu.com/p/668862020"><img src="https://img.shields.io/badge/知乎解读-BiSCI-0084FF" height="20" style="vertical-align:middle;" alt="知乎解读"></a>
+  <a href="https://huggingface.co/CaiYuanhao/BiSCI"><img src="https://img.shields.io/badge/🤗_Hugging_Face-models-FFD21E" height="20" style="vertical-align:middle;" alt="Hugging Face models"></a>
+</p>
 
+#### Authors
+Yuanhao Cai, Yuxin Zheng, Jing Lin, Xin Yuan, Yulun Zhang, and Haoqian Wang
 
+#### Paper
+[Binarized Spectral Compressive Imaging (NeurIPS 2023)](https://arxiv.org/abs/2305.10299)
 
-<h2> A Toolbox for Binarized Spectral Compressive Imaging Reconstruction </h2> 
+#### Introduction
+BiSCI is a toolbox with **eight binary neural network methods** for spectral compressive imaging reconstruction, including our **BiSRNet**. It reconstructs hyperspectral images with 28 spectral bands from coded snapshot measurements. We provide training and testing code for simulation and real experiments, pretrained models, and reconstruction results. If you find this repo useful, please give it a star ⭐ and consider citing our paper.
 
-
-</div>
-
-
-
+<p align="center"><img src="fig/pipeline.png" width="900" alt="BiSRNet architecture"></p>
 
 ### News
+
+- **2026.11.10 :** Pretrained weights are now available on [Hugging Face 🤗](https://huggingface.co/CaiYuanhao/BiSCI), with download commands in the Testing sections.
 
 - **2023.11.27 :** Our BiSCI has been added to the [Awesome-Model-Quantization](https://github.com/htqin/awesome-model-quantization) collection. :tada:
 - **2023.10.24 :** Code, pre-trained models, and results are released. Feel free to check and use them. ⭐
@@ -27,7 +33,7 @@
 
 - This repo is a toolbox containing eight BNN-based methods for spectral compressive imaging
 
-- We provide download links of pre-trained models and results as follows
+- Pretrained weights are also available on [Hugging Face](https://huggingface.co/CaiYuanhao/BiSCI) (**8 simulation + 4 real checkpoints**). Original model and result downloads are listed below.
 
 
 |     Simulation results     |    Simulation models    |    Real results    |    Real models    |
@@ -79,17 +85,19 @@
 
 ## 1. Create Environment:
 
-- Python 3 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux))
+Use Python 3.10 and an NVIDIA GPU. The following environment was tested with PyTorch 2.5.1 and CUDA 12.1 wheels:
 
-- [PyTorch >= 1.3](https://pytorch.org/)
-
-- NVIDIA GPU + [CUDA](https://developer.nvidia.com/cuda-downloads)
-
-- Python packages:
-
-```shell
-  pip install -r requirements.txt
+```bash
+git clone https://github.com/caiyuanhao1998/BiSCI.git
+cd BiSCI
+conda create -n bisci python=3.10 -y
+conda activate bisci
+python -m pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
+python -m pip install -r requirements.txt
+python -m pip check
 ```
+
+Run the following sections from the repository root unless a `cd` command is shown. Each training or testing block starts from the repository root. The scripts use GPU 0 by default; add `--gpu_id N` to choose another GPU. See the [validation notes](docs/validation.md) for the executed checks and their scope.
 
 &nbsp;
 
@@ -99,7 +107,7 @@
 Download cave_1024_28 ([Baidu Disk](https://pan.baidu.com/s/1X_uXxgyO-mslnCTn4ioyNQ), code: `fo0q` | [One Drive](https://bupteducn-my.sharepoint.com/:f:/g/personal/mengziyi_bupt_edu_cn/EmNAsycFKNNNgHfV9Kib4osB7OD4OSu-Gu6Qnyy5PweG0A?e=5NrM6S)), CAVE_512_28 ([Baidu Disk](https://pan.baidu.com/s/1ue26weBAbn61a7hyT9CDkg), code: `ixoe` | [One Drive](https://mailstsinghuaeducn-my.sharepoint.com/:f:/g/personal/lin-j21_mails_tsinghua_edu_cn/EjhS1U_F7I1PjjjtjKNtUF8BJdsqZ6BSMag_grUfzsTABA?e=sOpwm4)), KAIST_CVPR2021 ([Baidu Disk](https://pan.baidu.com/s/1LfPqGe0R_tuQjCXC_fALZA), code: `5mmn` | [One Drive](https://mailstsinghuaeducn-my.sharepoint.com/:f:/g/personal/lin-j21_mails_tsinghua_edu_cn/EkA4B4GU8AdDu0ZkKXdewPwBd64adYGsMPB8PNCuYnpGlA?e=VFb3xP)), TSA_simu_data ([Baidu Disk](https://pan.baidu.com/s/1LI9tMaSprtxT8PiAG1oETA), code: `efu8` | [One Drive](https://1drv.ms/u/s!Au_cHqZBKiu2gYFDwE-7z1fzeWCRDA?e=ofvwrD)), TSA_real_data ([Baidu Disk](https://pan.baidu.com/s/1RoOb1CKsUPFu0r01tRi5Bg), code: `eaqe` | [One Drive](https://1drv.ms/u/s!Au_cHqZBKiu2gYFTpCwLdTi_eSw6ww?e=uiEToT)), and then put them into the corresponding folders of `datasets/` and recollect them as the following form:
 
 ```shell
-|--MST
+|--BiSCI
     |--real
     	|-- test_code
     	|-- train_code
@@ -139,6 +147,8 @@ Download cave_1024_28 ([Baidu Disk](https://pan.baidu.com/s/1X_uXxgyO-mslnCTn4io
                 |--scene5.mat
 ```
 
+For the real-data OneDrive link, open the `zyh` folder and place its `mask.mat` and `Measurements/` directly under `datasets/TSA_real_data/`.
+
 Following [MST series work](https://github.com/caiyuanhao1998/MST), we use the CAVE dataset (cave_1024_28) as the simulation training set. Both the CAVE (CAVE_512_28) and KAIST (KAIST_CVPR2021) datasets are used as the real training set.
 
 
@@ -153,7 +163,7 @@ Following [MST series work](https://github.com/caiyuanhao1998/MST), we use the C
 
 cd simulation/train_code/
 
-# Binnary Connect
+# Binary Connect
 python train.py --outf ./exp/biconnect/ --method biconnect
 
 # BNN
@@ -184,71 +194,77 @@ python train.py --outf ./exp/bisrnet/ --method bisrnet
 
 ### 3.2&ensp;Testing
 
-Download the pre-trained weights from ([Google Drive](https://drive.google.com/drive/folders/11xMKGyQhUW8bvAxtwUCElUgA4kQFGV8g?usp=drive_link) / [Baidu Disk](https://pan.baidu.com/s/1kc1uv9xbw757Njymspv8Wg?pwd=cyh2), code: `cyh2`) and place them to `simulation/test_code/model_zoo/`
+Download the simulation weights from [Hugging Face](https://huggingface.co/CaiYuanhao/BiSCI). Run from the repository root:
+
+```bash
+hf download CaiYuanhao/BiSCI --include "Simu_models/*.pth" --local-dir simulation/test_code/model_zoo
+```
+
+This saves the eight checkpoints under `simulation/test_code/model_zoo/Simu_models/`. For example, to download only BiSRNet:
+
+```bash
+hf download CaiYuanhao/BiSCI Simu_models/bisrnet.pth --local-dir simulation/test_code/model_zoo
+```
+
+Prepare `datasets/TSA_simu_data/mask.mat` and the ten scenes in `datasets/TSA_simu_data/Truth/` as described above, then run:
 
 ```shell
 
 cd simulation/test_code/
 
-# Binnary Connect
-python test.py --outf ./exp/biconnect/ --method biconnect --pretrained_model_path ./model_zoo/biconnect.pth
+# Binary Connect
+python test.py --outf ./exp/biconnect/ --method biconnect --pretrained_model_path ./model_zoo/Simu_models/biconnect.pth
 
 # BNN
-python test.py --outf ./exp/bnn/ --method bnn --pretrained_model_path ./model_zoo/bnn.pth
+python test.py --outf ./exp/bnn/ --method bnn --pretrained_model_path ./model_zoo/Simu_models/bnn.pth
 
 # Bi-Real Net
-python test.py --outf ./exp/bireal/ --method bireal --pretrained_model_path ./model_zoo/bireal.pth
+python test.py --outf ./exp/bireal/ --method bireal --pretrained_model_path ./model_zoo/Simu_models/bireal.pth
 
 # IR-Net
-python test.py --outf ./exp/irnet/ --method irnet --pretrained_model_path ./model_zoo/irnet.pth
+python test.py --outf ./exp/irnet/ --method irnet --pretrained_model_path ./model_zoo/Simu_models/irnet.pth
 
 # ReActNet
-python test.py --outf ./exp/reactnet/ --method reactnet --pretrained_model_path ./model_zoo/reactnet.pth
+python test.py --outf ./exp/reactnet/ --method reactnet --pretrained_model_path ./model_zoo/Simu_models/reactnet.pth
 
 # BBCU
-python test.py --outf ./exp/bbcu/ --method bbcu --pretrained_model_path ./model_zoo/bbcu.pth
+python test.py --outf ./exp/bbcu/ --method bbcu --pretrained_model_path ./model_zoo/Simu_models/bbcu.pth
 
 # BTM
-python test.py --outf ./exp/btm/ --method btm --pretrained_model_path ./model_zoo/btm.pth
+python test.py --outf ./exp/btm/ --method btm --pretrained_model_path ./model_zoo/Simu_models/btm.pth
 
 # BiSRNet
-python test.py --outf ./exp/bisrnet/ --method bisrnet --pretrained_model_path ./model_zoo/bisrnet.pth
+python test.py --outf ./exp/bisrnet/ --method bisrnet --pretrained_model_path ./model_zoo/Simu_models/bisrnet.pth
 
 ```
 
-- The reconstructed HSIs will be output into `simulation/test_code/exp/`. Then place the reconstructed results into `simulation/test_code/Quality_Metrics/results` and  run the following commend to calculate the PSNR and SSIM of the reconstructed HSIs.
+- The reconstructed HSIs will be output into `simulation/test_code/exp/`. Then place the reconstructed results into `simulation/test_code/Quality_Metrics/results` as `Test_result.mat`. From the repository root, run the following command in MATLAB (with Image Processing Toolbox) to calculate PSNR and SSIM.
 
 ```shell
-Run cal_quality_assessment.m
+cd simulation/test_code/Quality_Metrics/
+matlab -batch "Cal_quality_assessment"
 ```
 
 - #### Evaluating the Params and FLOPS of models
 
-  We have provided a function `my_summary_bnn()` in `simulation/test_code/utils.py`, please use this function to evaluate the parameters and computational complexity of BNNs.
+  We have provided a function `my_summary_bnn()` in `simulation/test_code/utils.py`, run the following Python code from that directory to evaluate the parameters and computational complexity of BNNs.
 
-```shell
+```python
+from architecture import BiSRNet
 from utils import my_summary_bnn
-my_summary_bnn(BiSRNet(), 256, 256, 28, 1)
+my_summary_bnn(BiSRNet(stage=1), 256, 256, 28, 1)
 ```
 
 ### 3.3&ensp;Visualization
 
-- Put the reconstructed HSIs in `visualization/simulation_results/results/` and rename it as `method.mat`, e.g., `bisrnet.mat`
+- Put the reconstructed HSIs in `visualization/simulation_results/results/` and rename it as `method.mat`, e.g., `BiSRNet.mat`
 
 - Generate the RGB images of the reconstructed HSIs:
 
-```shell
- cd visualization/
- run show_simulation.m 
-```
-
-- Draw the spectral density lines
-
-```shell
+```bash
 cd visualization/
-Run show_line.m
+matlab -batch "show_simulation"
 ```
-
 
 &nbsp;
 
@@ -261,7 +277,7 @@ Run show_line.m
 
 cd real/train_code/
 
-# Binnary Connect
+# Binary Connect
 python train.py --outf ./exp/biconnect/ --method biconnect
 
 # BNN
@@ -292,36 +308,31 @@ python train.py --outf ./exp/bisrnet/ --method bisrnet
 
 ### 4.2&ensp;Testing
 
-Download the pre-trained weights from ([Google Drive](https://drive.google.com/drive/folders/1v0py8MjMQju5MWTZMkdmPq_elzUco8uh?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1ZaffyEDZ0FcdMdhUj7I5Tw?pwd=cyh2), code: `cyh2`) and place them to `simulation/test_code/model_zoo/`
+Download the real-data weights from [Hugging Face](https://huggingface.co/CaiYuanhao/BiSCI). Run from the repository root:
 
+```bash
+hf download CaiYuanhao/BiSCI --include "Real_models/*.pth" --local-dir real/test_code/model_zoo
+```
+
+HF currently provides **BiConnect, BNN, ReActNet, and BiSRNet** for real experiments. Their checkpoints are saved under `real/test_code/model_zoo/Real_models/`. The other four architectures are supported by the training code; use your own trained checkpoints to test them. The original [Google Drive](https://drive.google.com/drive/folders/1v0py8MjMQju5MWTZMkdmPq_elzUco8uh) and [Baidu Disk](https://pan.baidu.com/s/1ZaffyEDZ0FcdMdhUj7I5Tw?pwd=cyh2) links are retained for reference.
+
+Prepare the five measurements in `datasets/TSA_real_data/Measurements/`, then run:
 
 ```shell
 
 cd real/test_code/
 
-# Binnary Connect
-python test.py --method biconnect --pretrained_model_path ./model_zoo/biconnect.pth
+# Binary Connect
+python test.py --method biconnect --pretrained_model_path ./model_zoo/Real_models/biconnect.pth
 
 # BNN
-python test.py --method bnn --pretrained_model_path ./model_zoo/bnn.pth
-
-# Bi-Real Net
-python test.py --method bireal --pretrained_model_path ./model_zoo/bireal.pth
-
-# IR-Net
-python test.py --method irnet --pretrained_model_path ./model_zoo/irnet.pth
+python test.py --method bnn --pretrained_model_path ./model_zoo/Real_models/bnn.pth
 
 # ReActNet
-python test.py --method reactnet --pretrained_model_path ./model_zoo/reactnet.pth
-
-# BBCU
-python test.py --method bbcu --pretrained_model_path ./model_zoo/bbcu.pth
-
-# BTM
-python test.py --method btm --pretrained_model_path ./model_zoo/btm.pth
+python test.py --method reactnet --pretrained_model_path ./model_zoo/Real_models/reactnet.pth
 
 # BiSRNet
-python test.py --method bisrnet --pretrained_model_path ./model_zoo/bisrnet.pth
+python test.py --method bisrnet --pretrained_model_path ./model_zoo/Real_models/bisrnet.pth
 
 ```
 
@@ -331,13 +342,12 @@ python test.py --method bisrnet --pretrained_model_path ./model_zoo/bisrnet.pth
 
 ### 4.3&ensp;Visualization
 
-- Put the reconstructed HSI in `visualization/real_results/results` and rename it as method.mat, e.g., bisrnet.mat.
+- Copy the five reconstructed files from `real/test_code/results/bisrnet/` into `visualization/real_results/results/bisrnet/` (keep the names `1.mat` through `5.mat`).
+- Generate the band visualization images with MATLAB (with Image Processing Toolbox):
 
-- Generate the RGB images of the reconstructed HSI
-
-```shell
+```bash
 cd visualization/
-Run show_real.m
+matlab -batch "show_real"
 ```
 
 &nbsp;
@@ -349,7 +359,7 @@ Run show_real.m
 ```shell
 @inproceedings{bisci,
   title={Binarized Spectral Compressive Imaging},
-  author={Yuanhao Cai and Yuxin Zheng and Jing Lin and Haoqian Wang and Xin Yuan and Yulun Zhang},
+  author={Yuanhao Cai and Yuxin Zheng and Jing Lin and Xin Yuan and Yulun Zhang and Haoqian Wang},
   booktitle={NeurIPS},
   year={2023}
 }

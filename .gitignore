@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+/datasets
+/simulation/test_code/model_zoo/*
+/real/test_code/model_zoo/*
+/simulation/train_code/exp
+/simulation/test_code/exp
+/simulation/test_code/results
+/real/train_code/exp
+/real/test_code/results

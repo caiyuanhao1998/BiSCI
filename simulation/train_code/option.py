@@ -4,17 +4,16 @@ parser = argparse.ArgumentParser(description="HyperSpectral Image Reconstruction
 
 
 # Hardware specifications
-parser.add_argument("--gpu_id", type=str, default='1')
+parser.add_argument("--gpu_id", type=str, default='0')
 
 # Data specificationsd
-# parser.add_argument('--data_root', type=str, default='../../datasets/', help='dataset directory')
-parser.add_argument('--data_root', type=str, default='/data/zyx_data/datasets/', help='dataset directory')
+parser.add_argument('--data_root', type=str, default='../../datasets/', help='dataset directory')
 
 # Saving specifications
-parser.add_argument('--outf', type=str, default='./exp/mst_s/', help='saving_path')
+parser.add_argument('--outf', type=str, default='./exp/bisrnet/', help='saving_path')
 
 # Model specifications
-parser.add_argument('--method', type=str, default='mst_s', help='method name')
+parser.add_argument('--method', type=str, default='bisrnet', help='method name')
 parser.add_argument('--pretrained_model_path', type=str, default=None, help='pretrained model directory')
 parser.add_argument("--input_setting", type=str, default='H',
                     help='the input measurement of the network: H, HM or Y')

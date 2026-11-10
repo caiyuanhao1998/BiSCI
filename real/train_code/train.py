@@ -52,13 +52,14 @@ if __name__ == "__main__":
     torch.cuda.manual_seed(opt.seed)
 
     ## Initialize weight
-    for layer in model.modules():
-        if isinstance(layer, nn.Conv2d):
-            nn.init.xavier_uniform_(layer.weight)
-            # nn.init.constant_(layer.bias, 0.0)
-        if isinstance(layer, nn.ConvTranspose2d):
-            nn.init.xavier_uniform_(layer.weight)
-            # nn.init.constant_(layer.bias, 0.0)
+    if opt.pretrained_model_path is None:
+        for layer in model.modules():
+            if isinstance(layer, nn.Conv2d):
+                nn.init.xavier_uniform_(layer.weight)
+                # nn.init.constant_(layer.bias, 0.0)
+            if isinstance(layer, nn.ConvTranspose2d):
+                nn.init.xavier_uniform_(layer.weight)
+                # nn.init.constant_(layer.bias, 0.0)
 
     logger = gen_log(model_path)
     logger.info("Learning rate:{}, batch_size:{}.\n".format(opt.learning_rate, opt.batch_size))

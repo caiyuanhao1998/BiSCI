@@ -1,6 +1,8 @@
-opencv-python==4.4.0.46
-einops
-torchvision==0.7.0
-torch==1.6.0
-scipy==1.0.0
-fvcore
+numpy==1.26.4
+opencv-python-headless==4.9.0.80
+einops==0.8.0
+torchvision==0.20.1
+torch==2.5.1
+scipy==1.13.0
+fvcore==0.1.5.post20221221
+huggingface-hub==0.36.0

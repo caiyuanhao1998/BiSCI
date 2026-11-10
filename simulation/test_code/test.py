@@ -35,7 +35,7 @@ def main():
     # model
     model = model_generator(opt.method, opt.pretrained_model_path).cuda()
     pred, truth = test(model)
-    name = opt.outf + 'Test_result.mat'
+    name = os.path.join(opt.outf, 'Test_result.mat')
     print(f'Save reconstructed HSIs as {name}.')
     scio.savemat(name, {'truth': truth, 'pred': pred})
 

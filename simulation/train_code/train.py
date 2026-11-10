@@ -11,7 +11,6 @@ from option import opt
 import torch.nn.functional as F
 from pdb import set_trace as stx
 
-torch.autograd.set_detect_anomaly = True
 
 os.environ["CUDA_DEVICE_ORDER"] = 'PCI_BUS_ID'
 os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpu_id
@@ -119,7 +118,7 @@ def test(epoch, logger):
 def main():
     logger = gen_log(model_path)
     logger.info("Learning rate:{}, batch_size:{}.\n".format(opt.learning_rate, opt.batch_size))
-    psnr_max = 0
+    psnr_max = float('-inf')
     for epoch in range(1, opt.max_epoch + 1):
         train(epoch, logger)
         (pred, truth, psnr_all, ssim_all, psnr_mean, ssim_mean) = test(epoch, logger)

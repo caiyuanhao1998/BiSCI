@@ -18,7 +18,7 @@ parser.add_argument("--seed", default=1, type=int, help='Random_seed')
 parser.add_argument("--batch_size", default=1, type=int, help='batch_size')
 parser.add_argument("--isTrain", default=False, type=bool, help='train or test')
 parser.add_argument("--gpu_id", type=str, default='0')
-parser.add_argument("--pretrained_model_path", type=str, default='model_zoo/bisrnet.pth')
+parser.add_argument("--pretrained_model_path", type=str, default='model_zoo/Real_models/bisrnet.pth')
 parser.add_argument("--save_dir", type=str, default='./results')
 parser.add_argument("--method", type=str, default='bisrnet')
 opt = parser.parse_args()
@@ -31,7 +31,7 @@ def prepare_data(path, file_num):
     HR_HSI = np.zeros((((660,714,file_num))))
     for idx in range(file_num):
         ####  read HrHSI
-        path1 = os.path.join(path) + 'scene' + str(idx+1) + '.mat'
+        path1 = os.path.join(path, 'scene' + str(idx+1) + '.mat')
         data = sio.loadmat(path1)
         HR_HSI[:,:,idx] = data['meas_real']
         HR_HSI[HR_HSI < 0] = 0.0
@@ -40,16 +40,16 @@ def prepare_data(path, file_num):
 
 
 
-HR_HSI = prepare_data(opt.data_path, 5)
+HR_HSI = prepare_data(opt.data_path, opt.testset_num)
 
 model = model_generator(opt.method, opt.pretrained_model_path).cuda()
 model = model.eval()
 psnr_total = 0
 k = 0
-for j in range(5):
+for j in range(opt.testset_num):
     with torch.no_grad():
         meas = HR_HSI[:,:,j]
-        meas = meas / meas.max() * 0.8
+        meas = meas / max(meas.max(), np.finfo(np.float32).eps) * 0.8
         meas = torch.FloatTensor(meas).unsqueeze(2).permute(2, 0, 1)
         input = meas.unsqueeze(0)
         input = Variable(input)

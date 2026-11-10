@@ -2,19 +2,12 @@
 clear; clc;
 close all
 
-load('real_results\results\BiSRNet.mat');
-x_result_1 = flip(flip(squeeze(pred(1, :, :, :)),1),2);
-x_result_2 = flip(flip(squeeze(pred(2, :, :, :)),1),2);
-x_result_3 = flip(flip(squeeze(pred(3, :, :, :)),1),2);
-x_result_4 = flip(flip(squeeze(pred(4, :, :, :)),1),2);
-x_result_5 = flip(flip(squeeze(pred(5, :, :, :)),1),2);
-
-save_file = 'real_results\rgb_results\BiSRNet\';
+save_file = [fullfile('real_results', 'rgb_results', 'BiSRNet') filesep];
 mkdir(save_file);
 
-frame = 1;
-for recon = {x_result_1,x_result_2,x_result_3,x_result_4,x_result_5}
-    recon = cell2mat(recon);
+for frame = 1:5
+    data = load(fullfile('real_results', 'results', 'bisrnet', [num2str(frame) '.mat']));
+    recon = flip(flip(data.res, 1), 2);
     intensity = 5;
     for channel=1:28
         img_nb = [channel];  % channel number
@@ -24,5 +17,4 @@ for recon = {x_result_1,x_result_2,x_result_3,x_result_4,x_result_5}
         name = [save_file 'frame' num2str(frame) 'channel' num2str(channel)];
         dispCubeAshwin(recon(:,:,img_nb),intensity,lam28(img_nb), [] ,col_num,row_num,0,1,name);
     end
-    frame = frame+1;
 end

@@ -1,4 +1,5 @@
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description="HyperSpectral Image Reconstruction Toolbox")
 
@@ -6,15 +7,14 @@ parser = argparse.ArgumentParser(description="HyperSpectral Image Reconstruction
 parser.add_argument("--gpu_id", type=str, default='0')
 
 # Data specifications
-# parser.add_argument('--data_root', type=str, default='../../datasets/', help='dataset directory')
-parser.add_argument('--data_root', type=str, default='/data/zyx_data/datasets/', help='dataset directory')
+parser.add_argument('--data_root', type=str, default='../../datasets/', help='dataset directory')
 
-parser.add_argument('--data_path_CAVE', default='/data/zyx_data/datasets/CAVE_512_28/', type=str,
+parser.add_argument('--data_path_CAVE', default=None, type=str,
                         help='path of data')
-parser.add_argument('--data_path_KAIST', default='/data/zyx_data/datasets/KAIST_CVPR2021/', type=str,
+parser.add_argument('--data_path_KAIST', default=None, type=str,
                         help='path of data')
 
-parser.add_argument('--mask_path', default='/data/zyx_data/datasets/TSA_real_data/mask.mat', type=str,
+parser.add_argument('--mask_path', default=None, type=str,
                     help='path of mask')
 # parser.add_argument('--mask_path', default='/home/zyx22/code/DGSMP/Real/Data/mask.mat', type=str,
 #                         help='path of mask')
@@ -32,7 +32,7 @@ parser.add_argument("--input_mask", type=str, default='Phi',
 
 # Training specifications
 parser.add_argument("--size", default=96, type=int, help='cropped patch size')
-parser.add_argument("--epoch_sam_num", default=5000, type=int, help='total number of trainset')
+parser.add_argument("--epoch_sam_num", default=20000, type=int, help='total number of trainset')
 parser.add_argument("--seed", default=1, type=int, help='Random_seed')
 parser.add_argument('--batch_size', type=int, default=8, help='the number of HSIs per batch')
 parser.add_argument("--isTrain", default=True, type=bool, help='train or test')
@@ -47,7 +47,10 @@ opt.input_setting = 'H'
 opt.input_mask = 'Mask'
 opt.scheduler = 'CosineAnnealingLR'
 
-opt.trainset_num = 20000 // ((opt.size // 96) ** 2)
+opt.data_path_CAVE = opt.data_path_CAVE or os.path.join(opt.data_root, 'CAVE_512_28')
+opt.data_path_KAIST = opt.data_path_KAIST or os.path.join(opt.data_root, 'KAIST_CVPR2021')
+opt.mask_path = opt.mask_path or os.path.join(opt.data_root, 'TSA_real_data', 'mask.mat')
+opt.trainset_num = opt.epoch_sam_num // max(1, (opt.size // 96) ** 2)
 
 for arg in vars(opt):
     if vars(opt)[arg] == 'True':

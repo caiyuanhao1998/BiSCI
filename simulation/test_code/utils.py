@@ -29,11 +29,11 @@ def generate_shift_masks(mask_path, batch_size):
     return Phi_batch, Phi_s_batch
 
 def LoadTest(path_test):
-    scene_list = os.listdir(path_test)
+    scene_list = [name for name in os.listdir(path_test) if name.endswith('.mat')]
     scene_list.sort()
     test_data = np.zeros((len(scene_list), 256, 256, 28))
     for i in range(len(scene_list)):
-        scene_path = path_test + scene_list[i]
+        scene_path = os.path.join(path_test, scene_list[i])
         img = sio.loadmat(scene_path)['img']
         test_data[i, :, :, :] = img
     test_data = torch.from_numpy(np.transpose(test_data, (0, 3, 1, 2)))
@@ -60,8 +60,8 @@ def shuffle_crop(train_data, batch_size, crop_size=256):
     processed_data = np.zeros((batch_size, crop_size, crop_size, 28), dtype=np.float32)
     for i in range(batch_size):
         h, w, _ = train_data[index[i]].shape
-        x_index = np.random.randint(0, h - crop_size)
-        y_index = np.random.randint(0, w - crop_size)
+        x_index = np.random.randint(0, h - crop_size + 1)
+        y_index = np.random.randint(0, w - crop_size + 1)
         processed_data[i, :, :, :] = train_data[index[i]][x_index:x_index + crop_size, y_index:y_index + crop_size, :]
     gt_batch = torch.from_numpy(np.transpose(processed_data, (0, 3, 1, 2)))
     return gt_batch

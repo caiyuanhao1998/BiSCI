@@ -1,7 +1,7 @@
 %% plot color pics
 clear; clc;
-load('simulation_results\results\BiSRNet.mat');
-save_file = 'simulation_results\rgb_results\BiSRNet\';
+load(fullfile('simulation_results', 'results', 'BiSRNet.mat'));
+save_file = [fullfile('simulation_results', 'rgb_results', 'BiSRNet') filesep];
 mkdir(save_file);
 
 close all;
