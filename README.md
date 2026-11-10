@@ -1,13 +1,17 @@
+<div align="center">
+
 <p align="center"><img src="fig/logo.png" width="150" alt="BiSCI logo"></p>
 
-# A Toolbox for Binarized Spectral Compressive Imaging Reconstruction
-
-<p>
+<p align="center">
   <a href="https://arxiv.org/abs/2305.10299"><img src="https://img.shields.io/badge/arXiv-BiSCI-B31B1B" height="20" style="vertical-align:middle;" alt="arXiv paper"></a>
   <a href="https://arxiv.org/abs/2305.10299"><img src="https://img.shields.io/badge/NeurIPS-2023-FF5797" height="20" style="vertical-align:middle;" alt="NeurIPS 2023"></a>
   <a href="https://zhuanlan.zhihu.com/p/668862020"><img src="https://img.shields.io/badge/知乎解读-BiSCI-0084FF" height="20" style="vertical-align:middle;" alt="知乎解读"></a>
   <a href="https://huggingface.co/CaiYuanhao/BiSCI"><img src="https://img.shields.io/badge/🤗_Hugging_Face-models-FFD21E" height="20" style="vertical-align:middle;" alt="Hugging Face models"></a>
 </p>
+
+<h2 align="center">A Toolbox for Binarized Spectral Compressive Imaging Reconstruction</h2>
+
+</div>
 
 #### Authors
 Yuanhao Cai, Yuxin Zheng, Jing Lin, Xin Yuan, Yulun Zhang, and Haoqian Wang
@@ -200,11 +204,7 @@ Download the simulation weights from [Hugging Face](https://huggingface.co/CaiYu
 hf download CaiYuanhao/BiSCI --include "Simu_models/*.pth" --local-dir simulation/test_code/model_zoo
 ```
 
-This saves the eight checkpoints under `simulation/test_code/model_zoo/Simu_models/`. For example, to download only BiSRNet:
-
-```bash
-hf download CaiYuanhao/BiSCI Simu_models/bisrnet.pth --local-dir simulation/test_code/model_zoo
-```
+Alternatively, download from [Google Drive](https://drive.google.com/drive/folders/11xMKGyQhUW8bvAxtwUCElUgA4kQFGV8g?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1kc1uv9xbw757Njymspv8Wg?pwd=cyh2) (code: `cyh2`) and place the weights in `BiSCI/simulation/test_code/model_zoo/Simu_models/`.
 
 Prepare `datasets/TSA_simu_data/mask.mat` and the ten scenes in `datasets/TSA_simu_data/Truth/` as described above, then run:
 
@@ -314,7 +314,7 @@ Download the real-data weights from [Hugging Face](https://huggingface.co/CaiYua
 hf download CaiYuanhao/BiSCI --include "Real_models/*.pth" --local-dir real/test_code/model_zoo
 ```
 
-HF currently provides **BiConnect, BNN, ReActNet, and BiSRNet** for real experiments. Their checkpoints are saved under `real/test_code/model_zoo/Real_models/`. The other four architectures are supported by the training code; use your own trained checkpoints to test them. The original [Google Drive](https://drive.google.com/drive/folders/1v0py8MjMQju5MWTZMkdmPq_elzUco8uh) and [Baidu Disk](https://pan.baidu.com/s/1ZaffyEDZ0FcdMdhUj7I5Tw?pwd=cyh2) links are retained for reference.
+Alternatively, download from [Google Drive](https://drive.google.com/drive/folders/1v0py8MjMQju5MWTZMkdmPq_elzUco8uh?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1ZaffyEDZ0FcdMdhUj7I5Tw?pwd=cyh2) (code: `cyh2`) and place the weights in `BiSCI/real/test_code/model_zoo/Real_models/`.
 
 Prepare the five measurements in `datasets/TSA_real_data/Measurements/`, then run:
 
